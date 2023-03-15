@@ -20,7 +20,14 @@ namespace Session1
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            if(Form3.action == "add")
+            ArrayList itemtype = new ArrayList();
+            itemtype = DBCon.getType();
+
+            cbType.DataSource = itemtype;
+
+            numMinNight.Maximum = numMaxNight.Value;
+
+            if (Form3.action == "add")
             {
                 this.Text = "Seoul Stay - Add Listing";
                 btnClose.Text = "Finish";
@@ -30,21 +37,31 @@ namespace Session1
             {
                 this.Text = "Seoul Stay - Edit Listing";
                 btnClose.Text = "Close";
+                if(Form3.itemid > 0)
+                {
+                    ArrayList itemdata = new ArrayList();
+                    itemdata = DBCon.getItemData(Form3.itemid.ToString());
+                    cbType.SelectedItem = itemdata[0];
+                    txtTitle.Text = itemdata[1].ToString();
+                    numCap.Value = Convert.ToDecimal(itemdata[2]);
+                    numBed.Value = Convert.ToDecimal(itemdata[3]);
+                    numRooms.Value = Convert.ToDecimal(itemdata[4]);
+                    numBath.Value = Convert.ToDecimal(itemdata[5]);
+                    txtApproAddress.Text = itemdata[6].ToString();
+                    txtExactAddress.Text = itemdata[7].ToString();
+                    txtDesc.Text = itemdata[8].ToString();
+                    txtHostRules.Text = itemdata[9].ToString();
+                    numMinNight.Value = Convert.ToDecimal(itemdata[10]);
+                    numMaxNight.Value = Convert.ToDecimal(itemdata[11]);
+                }
             }
 
-            ArrayList itemtype = new ArrayList();
-            itemtype = DBCon.getType();
-
-            cbType.DataSource = itemtype;
-
-            numMinNight.Maximum = numMaxNight.Value;
 
         }
 
         private void tabAmenities_Click(object sender, EventArgs e)
         {
-            string sql = "SELECT ID, Name FROM amenities";
-            DBCon.display(sql,dgAmenities);
+
         }
 
         private void tabContList_Selected(object sender, TabControlEventArgs e)
@@ -61,7 +78,8 @@ namespace Session1
                 btnCancel.Visible = true;
                 btnNext.Visible = true;
                 btnClose.Visible = false;
-
+                string sql = "SELECT ID, Name FROM amenities";
+                DBCon.display(sql, dgAmenities);
             }
             else if (tabContList.SelectedIndex == 2)
             {
@@ -114,5 +132,7 @@ namespace Session1
                 numMinNight.Maximum = numMaxNight.Value;
             
         }
+
+
     }
 }

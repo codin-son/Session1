@@ -264,5 +264,32 @@ namespace Session1
             }
             return itemtype;
         }
+
+        public static ArrayList getItemData(string id)
+        {
+            ArrayList itemData = new ArrayList();
+            string sql = "SELECT IT.Name , I.Title, I.Capacity, I.NumberOfBeds, I.NumberOfBedrooms, I.NumberOfBathrooms, I.ExactAddress, I.ApproximateAddress, I.Description, I.HostRules, I.MinimumNights, I.MaximumNights FROM items I JOIN itemtypes IT ON I.ItemTypeID = IT.ID WHERE I.ID =" + id;
+            MySqlConnection con = GetConnection();
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                itemData.Add(reader.GetString("Name"));
+                itemData.Add(reader.GetString("Title"));
+                itemData.Add(reader.GetInt32("Capacity"));
+                itemData.Add(reader.GetInt32("NumberOfBeds"));
+                itemData.Add(reader.GetInt32("NumberOfBedrooms"));
+                itemData.Add(reader.GetInt32("NumberOfBathrooms"));
+                itemData.Add(reader.GetString("ExactAddress"));
+                itemData.Add(reader.GetString("ApproximateAddress"));
+                itemData.Add(reader.GetString("Description"));
+                itemData.Add(reader.GetString("HostRules"));
+                itemData.Add(reader.GetInt32("MinimumNights"));
+                itemData.Add(reader.GetInt32("MaximumNights"));
+            }
+            return itemData;
+        }
+
     }
 }

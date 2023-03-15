@@ -107,7 +107,6 @@ namespace Session1
             int selectedrowindex = dgOwner.SelectedCells[0].RowIndex;
             DataGridViewRow selectedrow = dgOwner.Rows[selectedrowindex];
             itemid = Convert.ToInt32(selectedrow.Cells["Column10"].Value);
-            MessageBox.Show(itemid.ToString());
             action = "edit";
             Form4 form4 = new Form4();
             this.Hide();

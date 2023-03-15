@@ -147,13 +147,18 @@ namespace Session1
             // numMaxNight
             // 
             this.numMaxNight.Location = new System.Drawing.Point(445, 338);
+            this.numMaxNight.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.numMaxNight.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numMaxNight.Name = "numMaxNight";
-            this.numMaxNight.Size = new System.Drawing.Size(35, 20);
+            this.numMaxNight.Size = new System.Drawing.Size(87, 20);
             this.numMaxNight.TabIndex = 23;
             this.numMaxNight.Value = new decimal(new int[] {
             1,
@@ -445,6 +450,7 @@ namespace Session1
             // 
             // Column1
             // 
+            this.Column1.DataPropertyName = "Name";
             this.Column1.FillWeight = 159.3909F;
             this.Column1.HeaderText = "Amenity";
             this.Column1.Name = "Column1";
@@ -452,14 +458,16 @@ namespace Session1
             // 
             // Column2
             // 
+            this.Column2.FalseValue = "false";
             this.Column2.FillWeight = 40.60914F;
             this.Column2.HeaderText = "";
             this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column2.TrueValue = "true";
             // 
             // Column8
             // 
+            this.Column8.DataPropertyName = "ID";
             this.Column8.HeaderText = "ID";
             this.Column8.Name = "Column8";
             this.Column8.Visible = false;
@@ -487,6 +495,7 @@ namespace Session1
             // 
             // dgDistance
             // 
+            this.dgDistance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgDistance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDistance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column3,
